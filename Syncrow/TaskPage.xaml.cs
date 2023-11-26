@@ -1,10 +1,10 @@
 ﻿namespace Syncrow
 {
-    public partial class MainPage : ContentPage
+    public partial class TaskPage : ContentPage
     {
         int count = 0;
 
-        public MainPage()
+        public TaskPage()
         {
             InitializeComponent();
         }

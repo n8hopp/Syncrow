@@ -30,6 +30,9 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -50,11 +53,19 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="System.Text.Json" Version="8.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Compile Update="AboutPage.xaml.cs">
 	    <DependentUpon>AboutPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Classes\Task.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Compile>
+	  <Compile Update="Classes\CrowTask.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Compile>
 	</ItemGroup>
 
@@ -67,4 +78,34 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="Resources\Images\list-check-solid.svg" />
+	  <None Remove="Resources\Images\calendar-days-solid%281%29.svg" />
+	  <None Remove="Resources\Images\calendar-days-solid.svg" />
+	  <None Remove="Resources\Images\clock-regular%281%29.svg" />
+	  <None Remove="Resources\Images\clock-solid%281%29.svg" />
+	  <None Remove="Resources\Images\crow-solid%282%29.svg" />
+	  <None Remove="Resources\Images\crow-solid%283%29.svg" />
+	  <None Remove="Classes\" />
+	  <None Remove="Resources\Images\calendar_days_solid.svg" />
+	  <None Remove="Resources\Images\crow_solid.svg" />
+	  <None Remove="Resources\Images\clock_regular.svg" />
+	  <None Remove="Resources\Images\clock_solid.svg" />
+	  <None Remove="Resources\Images\list_check_solid.svg" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\Images\calendar_days_solid.svg" />
+	  <BundleResource Include="Resources\Images\list_check_solid.svg" />
+	  <BundleResource Include="Resources\Images\clock_regular.svg" />
+	  <BundleResource Include="Resources\Images\clock_solid.svg" />
+	  <BundleResource Include="Resources\Images\crow_solid.svg" />
+	  <BundleResource Include="Resources\Images\calendar_days_solid.svg" />
+	  <BundleResource Include="Resources\Images\crow_solid.svg" />
+	  <BundleResource Include="Resources\Images\clock_regular.svg" />
+	  <BundleResource Include="Resources\Images\clock_solid.svg" />
+	  <BundleResource Include="Resources\Images\list_check_solid.svg" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Classes\" />
+	</ItemGroup>
 </Project>
