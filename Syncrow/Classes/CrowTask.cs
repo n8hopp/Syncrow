@@ -13,7 +13,6 @@ namespace Syncrow.Classes
 		private int completion;
 		private bool repeating;
 		private bool pinned;
-		//private Category category;
 		private TaskType taskType;
 
 		public CrowTask(string title)
@@ -85,12 +84,6 @@ namespace Syncrow.Classes
 			get { return pinned; }
 			set { pinned = value; }
 		}
-
-		//public Category Category
-		//{
-		//	get { return category; }
-		//	set { category = value; }
-		//}
 
 		public TaskType TaskType
 		{

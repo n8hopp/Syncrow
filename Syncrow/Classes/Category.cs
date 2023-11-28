@@ -8,7 +8,6 @@ namespace Syncrow.Classes
 		private Color? color;
 		private Image? icon;
 		private List<CrowTask> tasks;
-		private TaskBook? taskBook;
 
 		public Category()
 		{
@@ -23,7 +22,6 @@ namespace Syncrow.Classes
 			Color = color;
 			Icon = null;
 			tasks = new List<CrowTask>();
-			taskBook = new TaskBook();
 		}
 
         public void AddTask(CrowTask task)

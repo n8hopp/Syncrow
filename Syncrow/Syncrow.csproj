@@ -54,6 +54,8 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.7" />
 		<PackageReference Include="System.Text.Json" Version="8.0.0" />
 	</ItemGroup>
 
@@ -104,8 +106,5 @@
 	  <BundleResource Include="Resources\Images\clock_regular.svg" />
 	  <BundleResource Include="Resources\Images\clock_solid.svg" />
 	  <BundleResource Include="Resources\Images\list_check_solid.svg" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Classes\" />
 	</ItemGroup>
 </Project>
