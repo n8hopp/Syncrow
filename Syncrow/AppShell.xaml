@@ -7,16 +7,6 @@
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
-
-       <Tab Title="Calendar" Icon="crow_solid">
-
-            <ShellContent
-                Title="Calendar"
-                ContentTemplate="{DataTemplate local:CalendarPage}"
-                Route="CalendarPage" />
-
-       </Tab>
-
         <Tab Title="Tasks" Icon="list_check_solid">
 
             <ShellContent
@@ -24,18 +14,6 @@
                 ContentTemplate="{DataTemplate local:TaskPage}"
                 Route="TaskPage" />
 
-       </Tab>
-
-        <Tab Title="Alarm" Icon="clock_solid">
-
-            <ShellContent
-                Title="Alarm"
-                ContentTemplate="{DataTemplate local:AlarmPage}"
-                Route="AlarmPage" />
-
         </Tab>
-        
-
-        
     </TabBar>
 </Shell>
