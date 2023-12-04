@@ -52,6 +52,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
@@ -103,5 +104,10 @@
 	  <BundleResource Include="Resources\Images\clock_regular.svg" />
 	  <BundleResource Include="Resources\Images\clock_solid.svg" />
 	  <BundleResource Include="Resources\Images\list_check_solid.svg" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Reference Include="Microsoft.Maui">
+	    <HintPath>..\..\..\..\..\.nuget\packages\microsoft.maui.core.ref.win\7.0.101\ref\net7.0-windows10.0.19041\Microsoft.Maui.dll</HintPath>
+	  </Reference>
 	</ItemGroup>
 </Project>

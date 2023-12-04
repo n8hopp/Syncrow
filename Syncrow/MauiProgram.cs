@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Syncrow.Data;
 
 namespace Syncrow
 {
@@ -15,9 +16,11 @@ namespace Syncrow
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-#if DEBUG
-		builder.Logging.AddDebug();
-#endif
+    #if DEBUG
+		    builder.Logging.AddDebug();
+    #endif
+
+            builder.Services.AddSingleton<DbContext>();
 
             return builder.Build();
         }
