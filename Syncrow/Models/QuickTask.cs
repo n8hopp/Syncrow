@@ -20,4 +20,19 @@ public class QuickTask
     public int Urgency { get; set; }
     
     public QuickTask Clone() => MemberwiseClone() as QuickTask;
+
+    public (bool IsValid, string? ErrorMessage) Validate()
+    {
+        if(string.IsNullOrWhiteSpace(Title))
+        {
+            return (false, $"{nameof(Title)} is required");
+        }
+
+        if (Urgency < 0 || Urgency > 100)
+        {
+            return (false, $"{nameof(Urgency)} must be between 0 and 100");
+        }
+
+        return (true, null);
+    }
 }

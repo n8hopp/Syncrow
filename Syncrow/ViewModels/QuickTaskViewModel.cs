@@ -17,10 +17,10 @@ namespace Syncrow.ViewModels
         }
 
         [ObservableProperty]
-        private ObservableCollection<QuickTask> _quickTasks;
+        private ObservableCollection<QuickTask> _quickTasks = new();
 
         [ObservableProperty]
-        private QuickTask _operatingQuickTask;
+        private QuickTask _operatingQuickTask = new();
 
         [ObservableProperty]
         private bool _isBusy;
@@ -62,7 +62,14 @@ namespace Syncrow.ViewModels
             if (OperatingQuickTask is null)
                 return;
 
-            var busyText = OperatingQuickTask.Id == 0 ? "Creating quickTask..." : "Updating quickTask";
+            var (isValid, errorMessage) = OperatingQuickTask.Validate();
+            if(!isValid)
+            {
+                await Shell.Current.DisplayAlert("Invalid quickTask", errorMessage, "Ok");
+                return;
+            }
+
+            var busyText = OperatingQuickTask.Id == 0 ? "Creating quickTask..." : "Updating quickTask...";
             await ExecuteAsync(async () =>
             {
                 if (OperatingQuickTask.Id == 0)
@@ -74,21 +81,30 @@ namespace Syncrow.ViewModels
                 else
                 {
                     //update quicktask
-                    await _context.UpdateItemAsync<QuickTask>(OperatingQuickTask);
+                    if(await _context.UpdateItemAsync<QuickTask>(OperatingQuickTask))
+                    {
+                        var quickTaskCopy = OperatingQuickTask.Clone();
 
-                    var quickTaskCopy = OperatingQuickTask.Clone();
+                        var index = QuickTasks.IndexOf(OperatingQuickTask);
+                        QuickTasks.RemoveAt(index);
 
-                    var index = QuickTasks.IndexOf(OperatingQuickTask);
-                    QuickTasks.RemoveAt(index);
+                        QuickTasks.Insert(index, quickTaskCopy);
+                    }
+                    else
+                    {
+                        await Shell.Current.DisplayAlert("Error", "Quicktask Update Error", "Ok");
+                        return;
+                    }
 
-                    QuickTasks.Insert(index, quickTaskCopy);
+                    
                 }
 
                 SetOperatingQuickTaskCommand.Execute(new());
             }, busyText);
         }
 
-        private async Task DeleteProductAsync(int id)
+        [RelayCommand]
+        private async Task DeleteQuickTaskAsync(int id)
         {
             await ExecuteAsync(async () =>
             {
