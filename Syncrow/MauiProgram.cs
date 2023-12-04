@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Syncrow.Data;
+using Syncrow.ViewModels;
 
 namespace Syncrow
 {
@@ -21,7 +22,8 @@ namespace Syncrow
     #endif
 
             builder.Services.AddSingleton<DbContext>();
-
+            builder.Services.AddSingleton<QuickTaskViewModel>();
+            builder.Services.AddSingleton<TaskPage>();
             return builder.Build();
         }
     }

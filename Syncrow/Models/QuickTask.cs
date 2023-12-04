@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 namespace Syncrow.Models;
 
 [Table("quickTasks")]
-class QuickTask
+public class QuickTask
 {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
-
-    [MaxLength(128)]
+    
     public string Title { get; set; }
-
-    [MaxLength(1024)]
+    
     public string Description { get; set; }
 
     public int Urgency { get; set; }
+    
+    public QuickTask Clone() => MemberwiseClone() as QuickTask;
 }
